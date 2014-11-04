@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "apigen-json"
   gem.homepage = "http://github.com/fhur/apigen-json"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{JSON Generator for Apigen}
+  gem.description = %Q{JSON Generator for Apigen}
   gem.email = "fernando@authy.com"
   gem.authors = ["fhur"]
   # dependencies defined in Gemfile
