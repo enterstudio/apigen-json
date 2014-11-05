@@ -10,39 +10,44 @@ class JsonGenerator < Generator
 
   def get_endpoint_group_hash(endpoint_group)
     endpoint_group.endpoints.map do |endpoint|
-      {
-        :name => endpoint.name,
-        :url => endpoint.url,
-        :method => {
-          :name => endpoint.method.name,
-          :has_body => endpoint.method.has_body
-        },
-        :request_type => endpoint.request_type,
-        :path_params => get_path_params_hash(endpoint.path_params),
-        :query_params => get_query_params_hash(endpoint.query_params),
-        :headers => get_headers_hash(endpoint.headers),
-        :request_params => get_request_params_hash(endpoint.request_params)
-      }
+      get_endpoint_hash(endpoint)
     end
+  end
+
+  # converts an Endpoint to a Hash
+  def get_endpoint_hash(endpoint)
+    {
+      :name => endpoint.name,
+      :url => endpoint.url,
+      :method => {
+        :name => endpoint.method.name,
+        :has_body => endpoint.method.has_body
+      },
+      :request_type => endpoint.request_type,
+      :path_params => get_path_params_hash(endpoint.path_params),
+      :query_params => get_query_params_hash(endpoint.query_params),
+      :headers => get_headers_hash(endpoint.headers),
+      :request_params => get_request_params_hash(endpoint.request_params)
+    }
   end
 
   # converts a PathParam map to a Hash
   def get_path_params_hash(path_params)
-    path_params.map do |path_param|
-      get_hash(header, [:name, :type])
+    path_params.values.map do |path_param|
+      get_hash(path_param, [:name, :type])
     end
   end
 
   # converts a QueryParam map to a Hash
   def get_query_params_hash(query_params)
-    query_params.map do |query_param|
-      get_hash(header, [:name, :type])
+    query_params.values.map do |query_param|
+      get_hash(query_param, [:name, :type])
     end
   end
 
   # converts a Header map to a Hash
   def get_headers_hash(headers)
-    headers.map do |header|
+    headers.values.map do |header|
       get_hash(header, [:name, :value])
     end
   end
