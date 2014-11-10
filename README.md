@@ -1,6 +1,21 @@
 # apigen-json
 
-Description goes here.
+[Apigen](https://github.com/fhur/apigen) JSON Generator.
+Generates a json representation of your API endpoints.
+
+## Usage
+
+Add the following lines to your `apigen.json` under `"generators"`
+
+```json
+"generators": [
+  {
+    "require":"apigen-json",
+    "out":"/path/where/file/will/be/generated.json",
+    "class":"JsonGenerator"
+  }
+]
+```
 
 ## Contributing to apigen-json
 
